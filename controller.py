@@ -18,22 +18,22 @@ class Controller:
         self.rag_workflow = rag_workflow
         self.document_store = document_store
 
-    def handle_add(self, req: DocumentRequest) -> Dict[str, any]:
+    def handle_add(self, req: DocumentRequest) -> Dict[str, Any]:
         """
         Processes a request to add a new document.
 
         Args    :req (DocumentRequest) to validate request object containing the text.
-        Returns : Dict[str, any] containing the new document ID and operation status.
+        Returns : Dict[str, Any] containing the new document ID and operation status.
         """
         result = self.document_store.add_document(req.text)
         return result
     
-    def handle_ask(self, req: QuestionRequest) -> Dict[str, any]:
+    def handle_ask(self, req: QuestionRequest) -> Dict[str, Any]:
         """
         Processes a user question through the RAG pipeline.
 
         Args    :req (QuestionRequest) to validate request object containing the question.
-        Returns : Dict[str, any] containing The generated answer, context used, and latency metrics..
+        Returns : Dict[str, Any] containing The generated answer, context used, and latency metrics..
         """
         result = self.rag_workflow.run_query(req.question)
         return result

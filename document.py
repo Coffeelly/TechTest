@@ -10,7 +10,7 @@ class BaseDocumentStore(ABC):
     """
     Abstract interface for document storage systems.
     
-    This class defines the methods that any storage implementation 
+    This class defines the methods that Any storage implementation 
     (whether in-memory, Qdrant, or others) must provide.
     """
 
@@ -23,12 +23,12 @@ class BaseDocumentStore(ABC):
         self.embedder = embedder
 
     @abstractmethod
-    def add_document(self, text: str) -> Dict[str, any]:
+    def add_document(self, text: str) -> Dict[str, Any]:
         """
         Adds a new document text to the storage.
 
         Args    : text (str) to be stored.
-        Returns : Dict[str, any] containing the document ID and status.
+        Returns : Dict[str, Any] containing the document ID and status.
         """
         pass
 
@@ -74,7 +74,7 @@ class QdrantDocumentStore(BaseDocumentStore):
             vectors_config=VectorParams(size=128, distance=Distance.COSINE)
         )
 
-    def add_document(self, text: str) -> Dict[str, any]:
+    def add_document(self, text: str) -> Dict[str, Any]:
         """
         Embeds the text and upserts it into the Qdrant collection.
         """
@@ -120,7 +120,7 @@ class MemoryDocumentStore(BaseDocumentStore):
         super().__init__(embedder)
         self.docs_memory = []
 
-    def add_document(self, text: str) -> Dict[str, any]:
+    def add_document(self, text: str) -> Dict[str, Any]:
         """
         Appends text to the internal list
         """
